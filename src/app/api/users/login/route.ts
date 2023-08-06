@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
 			message: "Login successful",
 			success: true,
 		});
-		response.headers.set('Authorization', `Bearer ${token}`);
+		response.cookies.set('token', token, { httpOnly: true });
 		return response;
 	} catch (error: any) {
 		return NextResponse.json({ error: error.message }, { status: 500 });
