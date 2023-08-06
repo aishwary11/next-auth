@@ -1,5 +1,5 @@
 type SendEmailParams = {
-  email: string;
-  emailType: 'VERIFY' | 'RESET';
-  userId: any;
+	email: string;
+	emailType: "VERIFY" | "RESET";
+	userId: any;
 };
