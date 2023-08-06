@@ -1,5 +1,6 @@
 import connectDB from "@/app/dbconfig/dbConfig";
 import User from "@/models/userModel";
+import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -11,7 +12,7 @@ export async function POST(request: NextRequest) {
 		const { email, password } = reqBody;
 		const user = await User.findOne({ email });
 		if (!user) return NextResponse.json({ error: "User does not exist" }, { status: 400 });
-		const validPassword = password === user.password;
+		const validPassword = await bcryptjs.compare(password, user.password);
 		if (!validPassword) return NextResponse.json({ error: "Invalid password" }, { status: 400 });
 		const tokenData = {
 			id: user._id,
