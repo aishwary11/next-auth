@@ -11,7 +11,7 @@ export default function LoginPage() {
 		email: "",
 		password: ""
 	});
-	const [buttonDisabled, setButtonDisabled] = React.useState(false);
+	const [buttonDisabled, setButtonDisabled] = React.useState(true);
 	const [loading, setLoading] = React.useState(false);
 
 	const onLogin = async () => {
@@ -57,7 +57,7 @@ export default function LoginPage() {
 				onChange={(e) => setUser({ ...user, password: e.target.value })}
 				placeholder='password'
 			/>
-			<button onClick={onLogin} className='p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600'>
+			<button onClick={onLogin} className='p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600' disabled={buttonDisabled}>
 				Login here
 			</button>
 			<Link href='/signup'>Visit Signup page</Link>
