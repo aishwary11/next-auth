@@ -3,7 +3,7 @@ import axiosInstance from "@/helpers/axiosInstance";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";
-import { toast } from "react-hot-toast";
+import { Toaster, toast } from "react-hot-toast";
 
 export default function SignupPage() {
 	const router = useRouter();
@@ -19,10 +19,9 @@ export default function SignupPage() {
 		try {
 			setLoading(true);
 			const response = await axiosInstance.post("/users/signup", user);
-			console.log("Signup success", response.data);
+			toast.success(response.data.message);
 			router.push("/login");
 		} catch (error: any) {
-			console.log("Signup failed", error.message);
 			toast.error(error.message);
 		} finally {
 			setLoading(false);
@@ -39,6 +38,7 @@ export default function SignupPage() {
 
 	return (
 		<div className='flex flex-col items-center justify-center min-h-screen py-2'>
+			<Toaster />
 			<h1>{loading ? "Processing" : "Signup"}</h1>
 			<hr />
 			<label htmlFor='username'>Username</label>

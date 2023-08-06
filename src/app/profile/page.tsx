@@ -3,11 +3,12 @@ import axiosInstance from "@/helpers/axiosInstance";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { toast } from "react-hot-toast";
+import { Toaster, toast } from "react-hot-toast";
 
 export default function ProfilePage() {
 	const router = useRouter();
 	const [data, setData] = useState("nothing");
+
 	const logout = async () => {
 		try {
 			await axiosInstance.get("/users/logout");
@@ -21,12 +22,12 @@ export default function ProfilePage() {
 
 	const getUserDetails = async () => {
 		const res = await axiosInstance.get("/users/me");
-		console.log(res.data);
 		setData(res.data.data._id);
 	};
 
 	return (
 		<div className='flex flex-col items-center justify-center min-h-screen py-2'>
+			<Toaster />
 			<h1>Profile</h1>
 			<hr />
 			<p>Profile page</p>

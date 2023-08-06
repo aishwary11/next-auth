@@ -1,24 +1,25 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, models } from "mongoose";
 
-const User = model(
-	"User",
-	new Schema(
-		{
+const User =
+	models.users ||
+	model(
+		"users",
+		new Schema({
 			username: {
 				type: String,
-				required: [true, "Please provide a Username"],
+				required: [true, "Please provide a username"],
 				unique: true
 			},
 			email: {
 				type: String,
-				required: [true, "Please provide an Email"],
+				required: [true, "Please provide a email"],
 				unique: true
 			},
 			password: {
 				type: String,
-				required: [true, "Please provide a Password"]
+				required: [true, "Please provide a password"]
 			},
-			isVerified: {
+			isVerfied: {
 				type: Boolean,
 				default: false
 			},
@@ -30,9 +31,7 @@ const User = model(
 			forgotPasswordTokenExpiry: Date,
 			verifyToken: String,
 			verifyTokenExpiry: Date
-		},
-		{ timestamps: true }
-	)
-);
+		})
+	);
 
 export default User;
