@@ -20,7 +20,7 @@ function LoginPage() {
 			const response = await axiosInstance.post("/users/login", user);
 			toast.success(response.data.message);
 			router.push("/profile");
-		} catch (error: any) {
+		} catch (error) {
 			if (error instanceof Error) {
 				console.error("Error::", error.message);
 				toast.error(error.message);
