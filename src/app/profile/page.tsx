@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 
-export default function ProfilePage() {
+const ProfilePage = () => {
 	const router = useRouter();
 	const [data, setData] = useState("nothing");
 
@@ -14,9 +14,11 @@ export default function ProfilePage() {
 			await axiosInstance.get("/users/logout");
 			toast.success("Logout successful");
 			router.push("/login");
-		} catch (error: any) {
-			console.error(error.message);
-			toast.error(error.message);
+		} catch (error) {
+			if (error instanceof Error) {
+				console.error(error.message);
+				toast.error(error.message);
+			}
 		}
 	};
 
@@ -41,4 +43,6 @@ export default function ProfilePage() {
 			</button>
 		</div>
 	);
-}
+};
+export default ProfilePage;
+// export default tokenMiddleware(ProfilePage);

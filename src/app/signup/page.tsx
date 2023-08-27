@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import React from "react";
 import { Toaster, toast } from "react-hot-toast";
 
-export default function SignupPage() {
+const SignupPage = () => {
 	const router = useRouter();
 	const [user, setUser] = React.useState({
 		email: "",
@@ -77,4 +77,7 @@ export default function SignupPage() {
 			<Link href='/login'>Visit login page</Link>
 		</div>
 	);
-}
+};
+
+export default SignupPage;
+// export default tokenMiddleware(SignupPage);

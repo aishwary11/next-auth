@@ -6,7 +6,7 @@ export async function GET() {
 			message: "Logout successful",
 			success: true
 		});
-		response.cookies.delete('token');
+		response.cookies.delete("token");
 		return response;
 	} catch (error: any) {
 		return NextResponse.json({ error: error.message }, { status: 500 });

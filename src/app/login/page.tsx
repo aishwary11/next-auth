@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import React from "react";
 import { Toaster, toast } from "react-hot-toast";
 
-export default function LoginPage() {
+function LoginPage() {
 	const router = useRouter();
 	const [user, setUser] = React.useState({
 		email: "",
@@ -21,7 +21,10 @@ export default function LoginPage() {
 			toast.success(response.data.message);
 			router.push("/profile");
 		} catch (error: any) {
-			toast.error(error.message);
+			if (error instanceof Error) {
+				console.error("Error::", error.message);
+				toast.error(error.message);
+			}
 		} finally {
 			setLoading(false);
 		}
@@ -64,3 +67,5 @@ export default function LoginPage() {
 		</div>
 	);
 }
+export default LoginPage;
+// export default tokenMiddleware(LoginPage);
