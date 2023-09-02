@@ -45,4 +45,3 @@ const ProfilePage = () => {
 	);
 };
 export default ProfilePage;
-// export default tokenMiddleware(ProfilePage);

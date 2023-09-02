@@ -8,4 +8,3 @@ const UserProfile = ({ params }: any) => (
 );
 
 export default UserProfile;
-// export default tokenMiddleware(UserProfile);

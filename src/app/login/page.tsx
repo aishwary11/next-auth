@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { Toaster, toast } from "react-hot-toast";
+import styles from "../styles.module.scss";
 
 function LoginPage() {
 	const router = useRouter();
@@ -38,7 +39,7 @@ function LoginPage() {
 	return (
 		<div className='flex flex-col items-center justify-center min-h-screen py-2'>
 			<Toaster />
-			<h1>{loading ? "Processing" : "Login"}</h1>
+			<h1 className={`${styles["text-red"]} text-lg ${styles["text-red_font-weight"]}`}> {loading ? "Processing" : "Login"}</h1>
 			<hr />
 			<label htmlFor='email'>email</label>
 			<input
@@ -68,4 +69,3 @@ function LoginPage() {
 	);
 }
 export default LoginPage;
-// export default tokenMiddleware(LoginPage);

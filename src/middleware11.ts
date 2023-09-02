@@ -1,15 +1,14 @@
-import { redirect } from "next/navigation";
 import { NextRequest, NextResponse } from "next/server";
 
-export default function tokenMiddleware(handler: (req: NextRequest, res: NextResponse) => void) {
-	return async (req: NextRequest, res: NextResponse) => {
-		try {
-			const authToken = req.cookies.get("token");
-			console.log("...........", authToken);
-			if (!authToken) return redirect("/login");
-			return handler(req, res);
-		} catch (error) {
-			console.error("Error:::", error);
-		}
-	};
+export default async function middleware(req: NextRequest) {
+	try {
+		const authToken = req.cookies.get("token")?.value;
+		const url = req.nextUrl.clone();
+		url.pathname = "/login";
+		if (!authToken) return NextResponse.rewrite(url);
+		return NextResponse.next();
+	} catch (error) {
+		console.error("Error:", error);
+		return NextResponse.error();
+	}
 }
