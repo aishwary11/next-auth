@@ -1,9 +1,25 @@
+import { connectDB } from "@/utils/db";
 import Image from "next/image";
+import { Bounce, ToastContainer } from "react-toastify";
 import styles from "./page.module.css";
 
-export default function Home() {
+export default async function Home() {
+  connectDB();
   return (
     <main className={styles.main}>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        transition={Bounce}
+      />
       <div className={styles.description}>
         <p>
           Get started by editing&nbsp;
@@ -15,7 +31,7 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            By{" "}
+            By&nbsp;&nbsp;
             <Image
               src="/vercel.svg"
               alt="Vercel Logo"
