@@ -15,7 +15,7 @@ const SignupForm = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const { data, status } = await axiosInstance.post('/api/signup', user, {
+    const { data, status } = await axiosInstance.post('/signup', user, {
       headers: {
         'Content-Type': 'application/json',
       },

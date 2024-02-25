@@ -1,10 +1,8 @@
 import Image from 'next/image';
-import { ToastContainer } from 'react-toastify';
 import styles from './page.module.css';
 export default async function Home() {
   return (
     <main className={styles.main}>
-      <ToastContainer />
       <div className={styles.description}>
         <p>
           Get started by editing&nbsp;

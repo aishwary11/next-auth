@@ -15,7 +15,7 @@ const LoginForm = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const { data, status } = await axiosInstance.post('/api/login', user, {
+      const { data, status } = await axiosInstance.post('/login', user, {
         headers: {
           'Content-Type': 'application/json',
         },
